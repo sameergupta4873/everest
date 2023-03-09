@@ -7,6 +7,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <title>Jiralu Powder</title>
+    <script>
+        function imageZoom(imgID, resultID) {
+          var img, lens, result, cx, cy;
+          img = document.getElementById(imgID);
+          result = document.getElementById(resultID);
+          /*create lens:*/
+          lens = document.createElement("DIV");
+          lens.setAttribute("class", "img-zoom-lens");
+          /*insert lens:*/
+          img.parentElement.insertBefore(lens, img);
+          /*calculate the ratio between result DIV and lens:*/
+          cx = result.offsetWidth / lens.offsetWidth;
+          cy = result.offsetHeight / lens.offsetHeight;
+          /*set background properties for the result DIV:*/
+          result.style.backgroundImage = "url('" + img.src + "')";
+          result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+          /*execute a function when someone moves the cursor over the image, or the lens:*/
+          lens.addEventListener("mousemove", moveLens);
+          img.addEventListener("mousemove", moveLens);
+          /*and also for touch screens:*/
+          lens.addEventListener("touchmove", moveLens);
+          img.addEventListener("touchmove", moveLens);
+          function moveLens(e) {
+            var pos, x, y;
+            /*prevent any other actions that may occur when moving over the image:*/
+            e.preventDefault();
+            /*get the cursor's x and y positions:*/
+            pos = getCursorPos(e);
+            /*calculate the position of the lens:*/
+            x = pos.x - (lens.offsetWidth / 2);
+            y = pos.y - (lens.offsetHeight / 2);
+            /*prevent the lens from being positioned outside the image:*/
+            if (x > img.width - lens.offsetWidth) {x = img.width - lens.offsetWidth;}
+            if (x < 0) {x = 0;}
+            if (y > img.height - lens.offsetHeight) {y = img.height - lens.offsetHeight;}
+            if (y < 0) {y = 0;}
+            /*set the position of the lens:*/
+            lens.style.left = x + "px";
+            lens.style.top = y + "px";
+            /*display what the lens "sees":*/
+            result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+          }
+          function getCursorPos(e) {
+            var a, x = 0, y = 0;
+            e = e || window.event;
+            /*get the x and y positions of the image:*/
+            a = img.getBoundingClientRect();
+            /*calculate the cursor's x and y coordinates, relative to the image:*/
+            x = e.pageX - a.left;
+            y = e.pageY - a.top;
+            /*consider any page scrolling:*/
+            x = x - window.pageXOffset;
+            y = y - window.pageYOffset;
+            return {x : x, y : y};
+          }
+        }
+        </script>
 </head>
 
 <body>
@@ -86,6 +143,7 @@
                     <span class="btn">Buy Now</span>
                 </a>
             </div>
+            <!-- <div id="myresult" class="img-zoom-result"></div> -->
             <div class="details-1">
                 <h1 class="hd-2">Jiralu Powder</h1>
                 <p class="sub-detail">This ready-to-use dry ‘chutney’ powder blend is a rare example of simplicity yet exquisite taste. Besides adding an extra taste and flavour dimension to food, it also happens to be an ideal accompaniment with fresh fruits, juices etc.</p>
@@ -125,7 +183,7 @@
                             src="https://www.everestfoods.com/wp-content/uploads/2021/11/Pineapple-Jaljira-Drink-min-1920x2400-1.jpg">
                     </div>
                     <div class="slider-heading-2">
-                        <p class="slider-name-2">Grapes Jaljira Juice</p>
+                        <p class="slider-name-2">Pineapple Jaljira Drink</p>
                     </div>
                 </div>
                 <div class="slider-div-2">
@@ -134,7 +192,7 @@
                             src="https://www.everestfoods.com/wp-content/uploads/2021/11/Rajma-Masala-min-1920x1281-1.jpg">
                     </div>
                     <div class="slider-heading-2">
-                        <p class="slider-name-2">Grapes Jaljira Juice</p>
+                        <p class="slider-name-2">Rajma Masala</p>
                     </div>
                 </div>
                 <div class="slider-div-2">
@@ -143,7 +201,7 @@
                             src="https://www.everestfoods.com/wp-content/uploads/2021/11/Shahi-Paneer-Masala-1920x1280-1.jpg">
                     </div>
                     <div class="slider-heading-2">
-                        <p class="slider-name-2">Grapes Jaljira Juice</p>
+                        <p class="slider-name-2">Shahi Paneer Masala</p>
                     </div>
                 </div>
                 <div class="slider-div-2">
@@ -152,7 +210,7 @@
                             src="https://www.everestfoods.com/wp-content/uploads/2021/11/Sambhar-min-1920x1282-1.jpg">
                     </div>
                     <div class="slider-heading-2">
-                        <p class="slider-name-2">Grapes Jaljira Juice</p>
+                        <p class="slider-name-2">Sambhar</p>
                     </div>
                 </div>
                 <div class="slider-div-2">
@@ -161,7 +219,7 @@
                             src="https://www.everestfoods.com/wp-content/uploads/2021/11/shutterstock_1789219364-min-1920x1281-1.jpg">
                     </div>
                     <div class="slider-heading-2">
-                        <p class="slider-name-2">Grapes Jaljira Juice</p>
+                        <p class="slider-name-2">Aloo Gobhi Sabzi</p>
                     </div>
                 </div>
             </div>
@@ -185,7 +243,7 @@
                             src="https://www.everestfoods.com/wp-content/uploads/2022/03/Product-Listing-Pink-Salt.png">
                     </div>
                     <p class="slider-name-3">Tasteeto</p>
-                    <p class="slider-sub-3">Pasta Masala (12-In-1)</p>
+                    <p class="slider-sub-3">Pink Salt</p>
                 </div>
                 <div class="slider-div-3">
                     <div class="slider-img-div-3">
@@ -193,7 +251,7 @@
                             src="https://www.everestfoods.com/wp-content/uploads/2022/03/Product-Listing-Black-Pepper.png">
                     </div>
                     <p class="slider-name-3">Tasteeto</p>
-                    <p class="slider-sub-3">Pasta Masala (12-In-1)</p>
+                    <p class="slider-sub-3">Black Pepper</p>
                 </div>
                 <div class="slider-div-3">
                     <div class="slider-img-div-3">
@@ -201,7 +259,7 @@
                             src="https://www.everestfoods.com/wp-content/uploads/2022/03/Product-Listing-Cinnamon-Powder.png">
                     </div>
                     <p class="slider-name-3">Tasteeto</p>
-                    <p class="slider-sub-3">Pasta Masala (12-In-1)</p>
+                    <p class="slider-sub-3">Cinnamon Powder</p>
                 </div>
                 <div class="slider-div-3">
                     <div class="slider-img-div-3">
@@ -209,7 +267,7 @@
                             src="https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/03/Product-Listing-Chilli-Flakes.png.webp">
                     </div>
                     <p class="slider-name-3">Tasteeto</p>
-                    <p class="slider-sub-3">Pasta Masala (12-In-1)</p>
+                    <p class="slider-sub-3">Chilli Flakes</p>
                 </div>
                 <div class="slider-div-3">
                     <div class="slider-img-div-3">
@@ -217,7 +275,7 @@
                             src="https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/03/Product-Listing-Pizza-spice-mix.png.webp">
                     </div>
                     <p class="slider-name-3">Tasteeto</p>
-                    <p class="slider-sub-3">Pasta Masala (12-In-1)</p>
+                    <p class="slider-sub-3">Pizza Spice Mix</p>
                 </div>
             </div>
         </div>
@@ -294,6 +352,8 @@
                 document.getElementById('5').style="border: none"
                 document.getElementById(id).style="border: red 2px solid;"
         }
+
+        <!-- imageZoom("imgClickAndChange", "myresult"); -->
     </script>
 </body>
 
