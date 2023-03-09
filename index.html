@@ -10,11 +10,45 @@
 </head>
 
 <body>
+    
     <header class="navbar">
+        <nav role='navigation'>
+            <div id="menuToggle">
+              <!--
+              A fake / hidden checkbox is used as click reciever,
+              so you can use the :checked selector on it.
+              -->
+              <input type="checkbox" />
+              
+              <!--
+              Some spans to act as a hamburger.
+              
+              They are acting like a real hamburger,
+              not that McDonalds stuff.
+              -->
+              <span></span>
+              <span></span>
+              <span></span>
+              
+              <!--
+              Too bad the menu has to be inside of the button
+              but hey, it's pure CSS magic.
+              -->
+              <ul id="menu">
+                <a href="#"><li>About Us</li></a>
+                <a href="#"><li>Products</li></a>
+                <a href="#"><li>Tasteeto</li></a>
+                <a href="#"><li>Recipes</li></a>
+                <a href="#"><li>CSR</li></a>
+                <a href="#"><li>Careers</li></a>
+                <a href="#"><li>Contact</li></a>
+              </ul>
+            </div>
+          </nav>
         <div class="logo">
             <img class="header__logo__img lazyloaded"
                 src="https://www.everestfoods.com/wp-content/uploads/2022/01/everest-logo.svg" alt="Everest"
-                title="Everest" data-ll-status="loaded">
+                title="Everest" data-ll-status="loaded" >
         </div>
         <div class="navItems">
             <li class="nav-item">About Us</li>
@@ -29,15 +63,21 @@
     <main>
         <div class="section-1">
             <div class="slider-1">
-                <img class="slider-img-1" height="130" width="100" src="https://www.everestfoods.com/wp-content/uploads/2021/09/front-31.png">
-                <img class="slider-img-1" height="130" width="100" src="https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2021/09/back-57.png.webp">
-                <img class="slider-img-1" height="130" width="100" src="https://www.everestfoods.com/wp-content/uploads/2021/09/01-55.png">
-                <img class="slider-img-1" height="130" width="100" src="https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2021/09/fssai-15.png.webp">
-                <img class="slider-img-1" height="130" width="100" src="https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2021/09/barcode-47.png.webp">
+                <img class="slider-img-1" id="1"  height="130" width="100" src="https://www.everestfoods.com/wp-content/uploads/2021/09/front-31.png" onclick="changeImage('https://www.everestfoods.com/wp-content/uploads/2021/09/front-31.png', '1')">
+                <img class="slider-img-1" id="2" height="130" width="100" src="https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2021/09/back-57.png.webp" onclick="changeImage('https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2021/09/back-57.png.webp', '2')">
+                <img class="slider-img-1" id="3" height="130" width="100" src="https://www.everestfoods.com/wp-content/uploads/2021/09/01-55.png" 
+                onclick="changeImage('https://www.everestfoods.com/wp-content/uploads/2021/09/01-55.png', '3')"
+                >
+                <img class="slider-img-1" id="4" height="130" width="100" src="https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2021/09/fssai-15.png.webp"
+                onclick="changeImage('https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2021/09/fssai-15.png.webp', '4')"
+                >
+                <img class="slider-img-1" id="5" height="130" width="100" src="https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2021/09/barcode-47.png.webp"
+                onclick="changeImage('https://www.everestfoods.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2021/09/barcode-47.png.webp', '5')"
+                >
             </div>
             <div class="image-show">
                 <div>
-                    <img height="350" width="242" src="https://www.everestfoods.com/wp-content/uploads/2021/09/front-31.png">
+                    <img height="350" width="242" src="https://www.everestfoods.com/wp-content/uploads/2021/09/front-31.png"  id="imgClickAndChange">
                 </div>
                 <br>
                 <br>
@@ -57,7 +97,7 @@
         </div>
         <div class="section-2">
             <div class="head-2">
-                <h1 class="hd-2">Recipes For Your Soul</h1>
+                <h1 class="hd-new">Recipes For Your Soul</h1>
                 <span class="visit-2">Visit Everest's Kitchen</span>
             </div>
             <div class="slider-2">
@@ -244,6 +284,17 @@
             <p>Made With ❤ by Sameer</p>
         </div>
     </footer>
+    <script>
+        function changeImage(sor, id) {
+                document.getElementById("imgClickAndChange").src = sor
+                document.getElementById('1').style="border: none"
+                document.getElementById('2').style="border: none"
+                document.getElementById('3').style="border: none"
+                document.getElementById('4').style="border: none"
+                document.getElementById('5').style="border: none"
+                document.getElementById(id).style="border: red 2px solid;"
+        }
+    </script>
 </body>
 
 </html>

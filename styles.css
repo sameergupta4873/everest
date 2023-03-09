@@ -7,6 +7,157 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body{
+    overflow-x: hidden; /* needed because hiding the menu on the right side is not perfect,  */
+}
+
+#menuToggle
+{
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 25px;
+  height: 2px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: white;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  opacity: 1;
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  height:120vh;
+  padding-top: 125px;
+  margin-left:-17.5rem;
+  margin-top: -6rem;
+  
+  background: black;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  margin-left: 30px;
+  margin-bottom: 30px;
+  font-size: 19px;
+  font-weight: bolder;
+}
+
+#menu li:hover{
+    color: red;
+}
+
+/*
+ * And let's fade it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  #menu {
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  }
+}
+
 /* header */
 li{
     position:relative;
@@ -30,7 +181,7 @@ li{
 .navbar {
     width: 100%;
     background-color: black;
-    height: 4.1rem;
+    height: 3.5rem;
     position: -webkit-sticky;
     /* Safari */
     position: sticky;
@@ -40,7 +191,7 @@ li{
 .logo {
     float: left;
     margin-left: 8rem;
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
 }
 
 .logo-name {
@@ -57,8 +208,8 @@ li{
 .nav-item {
     color: white;
     list-style: none;
-    font-size: medium;
-    margin: 0rem 1.5rem;
+    font-size: 0.75rem;
+    margin: 0rem 1rem;
     font-weight: bold;
 }
 .nav-item:hover{
@@ -209,6 +360,10 @@ li{
 .slider-name-2:hover {
     background-position: left;
 }
+.hd-new{
+    font-size: 2.7rem;
+}
+
 
 /* section 3 */
 
@@ -345,3 +500,75 @@ path {
     color: rgb(102, 100, 100);
     margin-bottom: 1rem;
 }
+
+
+@media screen and  (max-width: 800px) {
+    .section-1{
+        display: inline;
+    }
+    .details-1{
+        width: 100%;
+    }
+    .slider-1{
+        display: flex;
+        width: 100%;
+        padding: 1rem;
+    }
+    .logo{
+        margin-left: 1rem;
+    }
+    .image-show{
+        width: 100%;
+    }
+    .head-2{
+        display: inline;
+    }
+    .hd-new{
+        margin: 2rem 1rem;
+        font-size: 2rem;
+    }
+    .hd-2{
+        margin: 2rem 0rem;
+        font-size: 2rem;
+    }
+    .hd-3{
+        margin: 2rem 0rem;
+        font-size: 2rem;
+    }
+    .visit-2{
+        margin: 0 1rem;
+    }
+    .slider-2{
+        margin-top: 4rem;
+    }
+    .head-3 {
+        margin: 1rem;
+    }
+    .footerItems{
+        display: none;
+    }
+    .foot{
+        margin-left: 1rem;
+    }
+    .connect{
+        display: block;
+        margin: 2rem 1rem;
+    }
+    .socials{
+        margin-top: 2rem;
+        margin-left: -1rem;
+    }
+    .footer-line-1{
+        display: block;
+        margin: 1rem;
+    }
+    .footer{
+        height: 32rem;
+    }
+    #menuToggle{
+        display: block;
+    }
+    .navItems{
+        display: none;
+    }
+  }
